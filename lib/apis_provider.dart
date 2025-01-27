@@ -1,14 +1,19 @@
 import 'dart:convert';
+import 'package:api_crud_using_provider/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'models/get_api_data_model.dart';
 import 'package:http/http.dart' as http;
 
+
+
 class GetApiProvider extends ChangeNotifier {
   List<GetApiDataModel> apiDataList = [];
   bool isLoading = false;
-
   bool isLoadingLogin = false;
+
+  // UserDataModel..
+  UserDataModel? userDataModel;
 
   getApiData() async {
     isLoading = true;
@@ -48,6 +53,23 @@ class GetApiProvider extends ChangeNotifier {
       print(e.toString());
     }
 
-
   }
+
+
+   getUserData(String userId) async {
+     isLoading = true;
+     var res =
+         await http.get(Uri.parse("https://reqres.in/api/users/$userId"));
+
+     var resBody = jsonDecode(res.body);
+     print(resBody);
+     userDataModel = resBody;
+     isLoading = false;
+     print(userDataModel);
+
+     notifyListeners();
+
+   }
+
+
 }
