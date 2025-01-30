@@ -1,5 +1,6 @@
 import 'package:api_crud_using_provider/delete_users_screen.dart';
 import 'package:api_crud_using_provider/home_screen.dart';
+import 'package:api_crud_using_provider/update_profile_screen.dart';
 import 'package:api_crud_using_provider/update_user_data_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        home: const UpdateUserDataScreen(),
       ),
     );
   }

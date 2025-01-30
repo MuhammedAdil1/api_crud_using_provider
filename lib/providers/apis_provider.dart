@@ -42,7 +42,7 @@ class GetApiProvider extends ChangeNotifier {
   }
 
 
-  // Login :  Post method..
+  // Login :  Post method..   ( Used to create a resource )
   loginApi(String email, String password, BuildContext context) async {
     try {
       isLoadingLogin =true;
@@ -67,7 +67,7 @@ class GetApiProvider extends ChangeNotifier {
   }
 
 
-   // GET method..
+   // GET method..   getUserData
    getUserData(String userId) async {
      isLoading = true;
      var res =
@@ -84,9 +84,9 @@ class GetApiProvider extends ChangeNotifier {
    }
 
 
+   // PUT method..  Edit the --> {getUserData},  ( Used to update or replace an existing resource )
+   Future<void> updateUserProfile(String userId, Map<String, String> data) async {
 
-   // PUT method..
-  Future<void> updateUserProfile(String userId, Map<String, String> data) async {
     try {
       isLoadingUpdateProfile = true;
       notifyListeners();
@@ -122,6 +122,9 @@ class GetApiProvider extends ChangeNotifier {
 
 
 
+  
+
+ // Get method ..   Getting all users..
  getAllUsers () async {
    getAllUserDataISLoading= true;
 
@@ -138,12 +141,10 @@ class GetApiProvider extends ChangeNotifier {
 
 
 
-
+ // Delete method ..   Deleting users by index..
  deleteUser (String userId, int index) async {
-
      var res =
          await http.delete(Uri.parse("https://reqres.in/api/users/$userId"));
-
      if(res.statusCode == 204) {
        print(res);
       getAllUsersList.removeAt(index );
